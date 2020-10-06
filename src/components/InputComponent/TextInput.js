@@ -7,12 +7,12 @@ const TextInput = props => {
       size="large"
       type="text"
       placeholder={props.placeholder}
-      onChange={props.onChange}
       name={props.name}
       onBlur={props.onBlur}
       value={props.value}
       className={props.className}
       prefix={props.prefix}
+      onChange={props.handleChange}
     />
   );
 };
