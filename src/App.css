@@ -127,3 +127,7 @@ label.gender-lbl {
   font-weight: 500;
   margin-right: 4%;
 }
+.ant-select-selector {
+  height: 40px;
+  font-size: 18px;
+}

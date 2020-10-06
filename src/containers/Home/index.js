@@ -12,10 +12,11 @@ import { withRouter } from "react-router-dom";
 import { addUserData, updateUserData, getAllUserData, deleteUser } from "../../redux/actions";
 import { uniqueId } from "lodash";
 import OpenNotification from "../../components/OpenNotification";
-import { Radio, Checkbox, Row, Col, Table, Tag, Modal } from "antd"
+import { Radio, Table, Tag, Modal, Select } from "antd"
 import DatePicker from "react-datepicker"
 import moment from "moment"
 const { confirm } = Modal
+const { Option } = Select
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +55,14 @@ class Home extends Component {
     });
   };
   handleCheckBox = (values) => {
+    let errors = null;
+    if (this.state.errors) {
+      errors = Object.assign("", this.state.errors);
+      delete errors["hobbies"];
+    }
+    this.setState({ hobbies: values, errors: errors })
+  }
+  handleDropDown = (values) => {
     let errors = null;
     if (this.state.errors) {
       errors = Object.assign("", this.state.errors);
@@ -141,7 +150,7 @@ class Home extends Component {
               user_name: this.state.user_name,
               dob: this.state.dob,
               gender: this.state.gender,
-              hobbies: this.state.hobbies.toString(),
+              hobbies: this.state.hobbies,
               email: this.state.email,
               phone: this.state.phone
             };
@@ -183,6 +192,7 @@ class Home extends Component {
     })
   }
   handleDelete = (record) => {
+    this.clearData()
     confirm({
       icon: <ExclamationCircleOutlined />,
       content: "Are you sure want to delete this user ?",
@@ -347,7 +357,7 @@ class Home extends Component {
                 className="validation-error"
               />
             )}
-            <Checkbox.Group style={{ marginTop: 20 }} value={this.state.hobbies} onChange={this.handleCheckBox}>
+            {/* <Checkbox.Group style={{ marginTop: 20 }} value={this.state.hobbies} onChange={this.handleCheckBox}>
               <Row>
                 <Col span={8}>
                   <Checkbox value="singing">Singing</Checkbox>
@@ -362,7 +372,26 @@ class Home extends Component {
                   <Checkbox value="travelling">Travelling</Checkbox>
                 </Col>
               </Row>
-            </Checkbox.Group>
+            </Checkbox.Group> */}
+            <Select
+              mode="multiple"
+              style={{ width: '100%', height: 40, marginTop: 20 }}
+              placeholder="Select Hobbies"
+              // defaultValue={['china']}
+              value={this.state.hobbies}
+              onChange={this.handleDropDown}
+              optionLabelProp="label"
+            >
+              <Option value="singing" label="Singing">
+                Singing
+              </Option>
+              <Option value="dancing" label="Dancing">
+                Dancing
+              </Option>
+              <Option value="traveling" label="Traveling">
+                Traveling
+              </Option>
+            </Select>
             {errors && (
               <ValidationErrorComponent
                 message={errors.hobbies}
