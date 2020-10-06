@@ -22,22 +22,15 @@ export default (state = INTIAL_STATE, action) => {
 
       return { ...state, users: usersArray, };
 
-
-
     case UPDATE_USER_SUCCESS:
 
       let usersUpdtingArray = localStorage.setItem("WS-ALL-USERS", JSON.stringify(action.payload));
 
       return { ...state, users: usersUpdtingArray, };
 
-
-
     case GET_ALL_USERS:
 
       return { ...state, users: localStorage.getItem("WS-ALL-USERS") === null ? [] : JSON.parse(localStorage.getItem("WS-ALL-USERS")), };
-
-
-
 
     case DELETE_USER_SUCCESS:
 
@@ -49,9 +42,6 @@ export default (state = INTIAL_STATE, action) => {
 
       return { ...state, users: filteredArray };
 
-
-
-      
     default:
 
       return { ...state };
