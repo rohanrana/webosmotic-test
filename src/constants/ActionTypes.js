@@ -1,0 +1,16 @@
+
+export const SET_HEADER_NAME = "SET_HEADER_NAME";
+
+
+
+export const ADD_USER_SUCCESS = "ADD_USER_SUCESS"
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS"
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS"
+
+
+
+
+
+
+
