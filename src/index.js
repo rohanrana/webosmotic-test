@@ -5,11 +5,15 @@ import * as serviceWorker from "./serviceWorker";
 import Root from "./config/Root";
 import "antd/dist/antd.css";
 import { Provider } from "react-redux";
-import ConfigureStore from "./redux/store/index";
+import { PersistGate } from 'redux-persist/integration/react'
+import ConfigureStore, { persistor } from "./redux/store/index";
 const store = ConfigureStore()
+
 ReactDOM.render(
   <Provider store={store}>
+     <PersistGate loading={null} persistor={persistor}>
     <Root />
+    </PersistGate>
   </Provider>,
 
   document.getElementById("root")
